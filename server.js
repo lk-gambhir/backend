@@ -3,15 +3,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(express.static('dist'))
 
 app.get('/login',(req,res) => {
     res.send('Please login')
 })
 
-app.get('/jokes',(req,res) => {
+app.get('/api/jokes',(req,res) => {
     const jokes = [
         {
             id: 1,
@@ -39,6 +37,7 @@ app.get('/jokes',(req,res) => {
             content: 'I would tell you a UDP joke, but you might not get it.'
         }
     ];
+    res.send(jokes);
 })
 
 app.listen(process.env.PORT, () => {
